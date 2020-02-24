@@ -1,0 +1,111 @@
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# Dump of table products
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `products`;
+
+CREATE TABLE `products` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  `code` mediumint(9) unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `description` text COLLATE utf8mb4_bin,
+  `price` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+
+INSERT INTO `products` (`id`, `user_id`, `code`, `name`, `description`, `price`)
+VALUES
+	(1,1,100,X'70726F6475637431',X'6465736372697074696F6E31',1.1),
+	(2,2,101,X'70726F6475637432',X'6465736372697074696F6E32',2.2),
+	(3,3,102,X'70726F6475637433',NULL,3.3),
+	(4,4,103,X'70726F6475637434',NULL,4.4),
+	(5,5,104,X'70726F6475637435',NULL,5.5);
+
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table rates
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `rates`;
+
+CREATE TABLE `rates` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  `product_id` int(11) unsigned NOT NULL,
+  `rating` tinyint(3) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+LOCK TABLES `rates` WRITE;
+/*!40000 ALTER TABLE `rates` DISABLE KEYS */;
+
+INSERT INTO `rates` (`id`, `user_id`, `product_id`, `rating`)
+VALUES
+	(1,1,1,1),
+	(2,2,1,2),
+	(3,3,1,3),
+	(4,4,1,4),
+	(5,5,1,5),
+	(6,1,2,6),
+	(7,2,2,7),
+	(8,3,2,8),
+	(9,4,2,9),
+	(10,5,2,10),
+	(11,1,3,2),
+	(12,5,3,8),
+	(13,2,4,3),
+	(14,4,4,6),
+	(15,5,5,5);
+
+/*!40000 ALTER TABLE `rates` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table users
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_bin NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+
+INSERT INTO `users` (`id`, `name`, `email`)
+VALUES
+	(1,X'7573657231',X'757365723140676D61696C2E636F6D'),
+	(2,X'7573657232',X'757365723240676D61696C2E636F6D'),
+	(3,X'7573657233',X'757365723340676D61696C2E636F6D'),
+	(4,X'7573657234',X'757365723440676D61696C2E636F6D'),
+	(5,X'7573657235',X'757365723540676D61696C2E636F6D');
+
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

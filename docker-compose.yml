@@ -1,0 +1,28 @@
+version: "3.1"
+services:
+
+    mysql:
+      image: mysql:5.7
+      container_name: cubicfox-mysql
+      working_dir: /application
+      volumes:
+        - .:/application
+        - ./resources/sql/cubicfox_dump.sql:/docker-entrypoint-initdb.d/importthis.sql
+      environment:        
+        MYSQL_DATABASE: 'cubicfox'
+        MYSQL_USER: 'fox'
+        MYSQL_PASSWORD: 'cubic'
+        MYSQL_ROOT_PASSWORD: 'foxycubic'
+      ports:
+        - "8002:3306"
+
+    web-php:
+      build: ./
+      container_name: cubicfox-web-php
+      working_dir: /application
+      volumes:
+        - .:/application
+      ports:
+       - "8000:8000"
+
+
